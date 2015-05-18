@@ -1,9 +1,9 @@
-# TweetQuick
+# Dokodemodoor for Mac
 
 ## セットアップ
 
 ```
-$ cd tweetquick
+$ cd dokodemodoor-for-mac
 $ npm i
 $ ./node_modules/.bin/electron .
 ```
