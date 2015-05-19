@@ -1,4 +1,5 @@
 var app = require("app");
+var shell = require("shell");
 var Menu = require("menu");
 var Tray = require("tray");
 var client = require("socket.io-client");
@@ -14,6 +15,7 @@ app.on("ready", function() {
   tray = new Tray("./images/opened.jpg");
 
   var contextMenu = Menu.buildFromTemplate([
+    { label: "Open Heavensdoor Web", type: "normal", click: openHeavensdoor },
     { label: "Quit", type: "normal", click: app.quit }
   ]);
 
@@ -25,7 +27,7 @@ app.on("ready", function() {
     changeIcon(flag);
   });
 
-  request("http://ficc-heavensdoor.herokuapp.com/params", function (error, response, body) {
+  request("http://ficc-heavensdoor.herokuapp.com/params", function(error, response, body) {
     if (!error && response.statusCode == 200) {
       changeIcon(JSON.parse(body).value);
     }
@@ -40,4 +42,8 @@ function changeIcon(flag) {
   } else {
     tray.setImage("./images/closed.jpg");
   }
+}
+
+function openHeavensdoor() {
+  shell.openExternal("http://ficc-heavensdoor.herokuapp.com");
 }
