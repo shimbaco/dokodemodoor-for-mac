@@ -1,3 +1,5 @@
+var path = require("path");
+
 var app = require("app");
 var shell = require("shell");
 var Menu = require("menu");
@@ -6,13 +8,15 @@ var client = require("socket.io-client");
 var request = require("request");
 
 var tray = null;
+var openedIconPath = path.join(__dirname, "images", "opened.jpg");
+var closedIconPath = path.join(__dirname, "images", "closed.jpg");
 
 app.on("ready", function() {
   if (app.dock) {
     app.dock.hide();
   }
 
-  tray = new Tray("./images/opened.jpg");
+  tray = new Tray(openedIconPath);
 
   var contextMenu = Menu.buildFromTemplate([
     { label: "Open Heavensdoor Web", type: "normal", click: openHeavensdoor },
@@ -38,9 +42,9 @@ function changeIcon(flag) {
   var isOpened = (flag === 1);
 
   if (isOpened) {
-    tray.setImage("./images/opened.jpg");
+    tray.setImage(openedIconPath);
   } else {
-    tray.setImage("./images/closed.jpg");
+    tray.setImage(closedIconPath);
   }
 }
 

@@ -2,11 +2,14 @@
   "name": "dokodemodoor-for-mac",
   "version": "0.1.0",
   "main": "main.js",
+  "scripts": {
+    "dist": "rm -rf Dokodemodoor.app/ && electron-packager . Dokodemodoor --platform=darwin --arch=x64 --version=0.26.0 --icon=images/opened.jpg"
+  },
   "devDependencies": {
+    "electron-packager": "^4.1.2",
     "electron-prebuilt": "^0.26.0"
   },
   "dependencies": {
-    "asar": "^0.6.1",
     "request": "^2.55.0",
     "socket.io-client": "^1.3.5"
   }
